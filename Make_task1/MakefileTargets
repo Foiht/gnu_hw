@@ -1,0 +1,19 @@
+main : src1.o src2.o src3.o main.o
+	gcc src1.o src2.o src3.o main.o -o main
+	
+src1.o : 
+	gcc -c src1.c src1.h
+
+src2.o : 
+	gcc -c src2.c src2.h
+
+src3.o : 
+	gcc -c src3.c src3.h
+
+main.o : 
+	gcc -c main.c src1.h src2.h src3.h
+
+clean:
+	@rm *.o
+	@rm *.gch
+	@rm main
