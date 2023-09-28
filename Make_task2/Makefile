@@ -1,4 +1,19 @@
-#!/bin/bash
+start:
+ifeq ($(VAR),by_file)
+	@echo "Chosen variant: $(VAR)"
+	make -f make1.mk
+	make -f make2.mk
+	make -f make3.mk
+	make all
+else ifeq ($(VAR),by_include)
+	@echo "Chosen variant: $(VAR)"
+	include make1.mk
+	include make2.mk
+	include make3.mk
+	make all
+else
+	@echo "Chosen unexpected variant: $(VAR)"
+endif
 
 all: main
 
@@ -10,21 +25,6 @@ main.o: main.c
 
 test:
 	echo "After test"
-
-
-ifeq ($(VAR),by_file)
-	@echo "Chosen variant: $(VAR)"
-	make -f make1.mk
-	make -f make2.mk
-	make -f make3.mk
-else ifeq ($(VAR),by_include)
-	@echo "Chosen variant: $(VAR)"
-	include make1.mk
-	include make2.mk
-	include make3.mk
-else
-	@echo "Chosen unexpected variant: $(VAR)"
-endif
 
 
 .PHONY:	clean
