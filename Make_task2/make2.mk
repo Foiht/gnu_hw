@@ -1,2 +1,2 @@
-src2.o : src2.c
+src2.o :
 	gcc -c src2.c

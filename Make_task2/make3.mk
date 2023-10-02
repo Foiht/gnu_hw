@@ -1,2 +1,2 @@
-src3.o : src3.c
+src3.o :
 	gcc -c src3.c
